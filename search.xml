@@ -4,31 +4,6 @@
   
     
     <entry>
-      <title>线程与进程</title>
-      <link href="/2020/06/29/ios-thread/"/>
-      <url>/2020/06/29/ios-thread/</url>
-      
-        <content type="html"><![CDATA[<p>每台计算机工作中三大核心硬件CPU、内存、硬盘。其中CPU运行速度最快、其次是内存、最慢的当属磁盘IO，三者一起协作完成任务就产生问题</p><p> CPU执行速度非常快，所以它的大部分时间都是在等内存和磁盘的IO完成工作</p><a id="more"></a><h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>进程是对正在运行中的程序的一个抽象 <span class='p red'>同时进程是操作系统分配资源的最小单位</span></p><p>操作系统的其它所有内容都是围绕着进程展开的。即使可以使用的 CPU 只有一个，它们也支持（伪）并发操作。它们会将一个单独的 CPU 抽象为多个虚拟机的 CPU。</p><div class="gallery ">              <p><img src="/images/Snipaste_2020-07-02_14-52-13.png" alt=""></p>            </div><h3 id="进程模型"><a href="#进程模型" class="headerlink" title="进程模型"></a>进程模型</h3><p>在进程模型中所有计算机上运行的软件，通常也包括操作系统，被组织为若干顺序进程(sequential processes)，简称为 进程(process) 。</p><p>一个进程就是一个正在执行的程序的实例，进程也包括程序计数器、寄存器和变量的当前值。从概念上来说，每个进程都有各自的虚拟 CPU，但是实际情况是 CPU 会在各个进程之间进行来回切换。</p><div class="gallery ">              <p><img src="/images/Snipaste_2020-07-02_14-36-10.png" alt=""></p>            </div><p>每个程序要运行时，其逻辑程序计数器会装载到物理程序计数器中。当程序运行结束后，然后再把它放回进程的逻辑计数器中。</p><blockquote><p>CPU切换任务后，下次回来需要知道当前任务已经执行到了哪一步，所以对任务节点进行一个标记，回来的时候可以从上次标记的位置继续工作，而这个标记叫做程序计数器。</p></blockquote><h3 id="进程的实现"><a href="#进程的实现" class="headerlink" title="进程的实现"></a>进程的实现</h3><p>操作系统为了执行进程间的切换，会维护着一张表格，这张表就是 进程表(process table)。</p><p>该表项包含了进程状态的重要信息，包括程序计数器、堆栈指针、内存分配状况、所打开文件的状态、账号和调度信息，以及其它在进程由运行态转换到就绪态或阻塞态时所必须保存的信息，从而保证该进程随后能再次启动，就像从未被中断过一样。</p><h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><span class='p red'>线程是CPU调度的最小单位</span> 线程依赖于进程 进程默认有一个主线程<p>线程不像是进程那样具备较强的独立性。同一个进程中的所有线程都会有完全一样的地址空间，这意味着它们也共享同样的全局变量。<span class='p red'>由于每个线程都可以访问进程地址空间内每个内存地址，因此一个线程可以读取、写入甚至擦除另一个线程的堆栈</span>。</p><img src='/images/Snipaste_2020-07-02_15-45-07.png' style='width:200px'><h3 id="经典的线程模型"><a href="#经典的线程模型" class="headerlink" title="经典的线程模型"></a>经典的线程模型</h3><p>每个进程都有自己的地址空间和单个控制线程，每个线程都在不同的地址空间中运行</p><img src='/images/Snipaste_2020-07-02_15-58-26.png' style='width:400px'><p>一个进程三个线程的情况。每个线程都在相同的地址空间中运行</p><img src='/images/Snipaste_2020-07-02_16-00-24.png' style='width:400px'><p>文章参考 </p><span class='btn regular'><a href='https://zhuanlan.zhihu.com/p/83525853' target="_blank" rel="noopener" title='多线程发展史'><i class='fas fa-play-circle'></i>多线程发展史</a></span><span class='btn regular'><a href='https://www.zhihu.com/question/25532384' target="_blank" rel="noopener" title='线程与进程'><i class='fas fa-play-circle'></i>线程与进程</a></span>]]></content>
-      
-      
-      <categories>
-          
-          <category> 计算机基础 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 多线程 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>从零开始搭建博客</title>
       <link href="/2020/06/29/hello-world/"/>
       <url>/2020/06/29/hello-world/</url>
@@ -46,6 +21,31 @@
         <tags>
             
             <tag> 博客 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>线程与进程</title>
+      <link href="/2020/06/29/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/"/>
+      <url>/2020/06/29/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<p>早先的操作系统是单道批处理的，但是cpu是高效率的，而IO是低速的，就会出现cpu要等待IO的情况；从而降低了实际效率。</p><a id="more"></a><img src='/images/Snipaste_2020-07-04_03-11-16.png' style='width:500px'><p>后来就引入多道批处理，而程序在执行的过程中又会因为共享资源而导致程序在执行的过程中相互限制。所有后来引入进程用来给程序提供一个抽象的概念，它能申请道系统资源并且独立给程序提供资源，从而解决原来的程序之间因为资源共享而相互限制的问题。这样就可以提高系统资源的利用率以及系统的处理能力</p><img src='/images/Snipaste_2020-07-04_03-30-09.png' style='width:600px'><h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>进程是对正在运行中的程序的一个抽象 <span class='p red'>同时进程是操作系统分配资源的最小单位</span></p><p>操作系统的其它所有内容都是围绕着进程展开的。即使可以使用的 CPU 只有一个，它们也支持（伪）并发操作。它们会将一个单独的 CPU 抽象为多个虚拟机的 CPU。</p><div class="gallery ">              <p><img src="/images/Snipaste_2020-07-02_14-52-13.png" alt=""></p>            </div><h3 id="进程模型"><a href="#进程模型" class="headerlink" title="进程模型"></a>进程模型</h3><p>在进程模型中所有计算机上运行的软件，通常也包括操作系统，被组织为若干顺序进程(sequential processes)，简称为 进程(process) 。</p><p>一个进程就是一个正在执行的程序的实例，进程也包括程序计数器、寄存器和变量的当前值。从概念上来说，每个进程都有各自的虚拟 CPU，但是实际情况是 CPU 会在各个进程之间进行来回切换。</p><div class="gallery ">              <p><img src="/images/Snipaste_2020-07-02_14-36-10.png" alt=""></p>            </div><p>每个程序要运行时，其逻辑程序计数器会装载到物理程序计数器中。当程序运行结束后，然后再把它放回进程的逻辑计数器中。</p><blockquote><p>CPU切换任务后，下次回来需要知道当前任务已经执行到了哪一步，所以对任务节点进行一个标记，回来的时候可以从上次标记的位置继续工作，而这个标记叫做程序计数器。</p></blockquote><h3 id="进程的实现"><a href="#进程的实现" class="headerlink" title="进程的实现"></a>进程的实现</h3><p>操作系统为了执行进程间的切换，会维护着一张表格，这张表就是 进程表(process table)。</p><p>该表项包含了进程状态的重要信息，包括程序计数器、堆栈指针、内存分配状况、所打开文件的状态、账号和调度信息，以及其它在进程由运行态转换到就绪态或阻塞态时所必须保存的信息，从而保证该进程随后能再次启动，就像从未被中断过一样。</p><h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><span class='p red'>线程是CPU调度的最小单位</span> 线程依赖于进程 进程默认有一个主线程 线程共享进程总的资源<p>线程不像是进程那样具备较强的独立性。同一个进程中的所有线程都会有完全一样的地址空间，这意味着它们也共享同样的全局变量。<span class='p red'>由于每个线程都可以访问进程地址空间内每个内存地址，因此一个线程可以读取、写入甚至擦除另一个线程的堆栈</span>。</p><img src='/images/Snipaste_2020-07-02_15-45-07.png' style='width:200px'><h3 id="经典的线程模型"><a href="#经典的线程模型" class="headerlink" title="经典的线程模型"></a>经典的线程模型</h3><p>每个进程都有自己的地址空间和单个控制线程，每个线程都在不同的地址空间中运行</p><img src='/images/Snipaste_2020-07-02_15-58-26.png' style='width:400px'><p>一个进程三个线程的情况。每个线程都在相同的地址空间中运行</p><img src='/images/Snipaste_2020-07-02_16-00-24.png' style='width:400px'><p>文章参考 </p><span class='btn regular'><a href='https://zhuanlan.zhihu.com/p/83525853' target="_blank" rel="noopener" title='多线程发展史'><i class='fas fa-play-circle'></i>多线程发展史</a></span><span class='btn regular'><a href='https://www.zhihu.com/question/25532384' target="_blank" rel="noopener" title='线程与进程'><i class='fas fa-play-circle'></i>线程与进程</a></span>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 进程 </tag>
             
         </tags>
       
