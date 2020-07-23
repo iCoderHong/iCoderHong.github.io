@@ -54,6 +54,31 @@
     
     
     <entry>
+      <title>UNIX</title>
+      <link href="/2020/06/29/UNIX/"/>
+      <url>/2020/06/29/UNIX/</url>
+      
+        <content type="html"><![CDATA[<p>本文为阅读《UNIX环境高级编程》一书的笔记。主要是从操作系统起步为了更加理解计算机的原理。</p><a id="more"></a><h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><p>所有操作系统都为它们所运行的程序提供服务，典型的服务包括：执行新程序、打开文件、读文件、分配存储区以及获得当前时间等。</p><p>从严格意义上说，可将操作系统定义为一种软件，它控制计算机硬件资源，提供程序运行环境。我们通常将这种软件称为内核（kernel），因为它相对较小，而且位于环境的核心。</p><p>内核的接口被称为系统调用（system call）。公用函数库构建在系统调用接口之上，应用程序既可使用公用函数库，也可使用系统调用。shell 是一个特殊的应用程序，为运行其他应用程序提供了一个接口。</p><img src='/images/Snipaste_2020-07-23_23-12-33.png' style='width:300px'><p>Linux是GNU操作系统使用的内核。一些人将这种操作系统称为<a href="https://blog.csdn.net/lbb88888888/article/details/102954924" target="_blank" rel="noopener">GNU/Linux</a>操作系统，但是，更常见的是简单地称其为 Linux</p><p><a href="http://c.biancheng.net/view/707.html" target="_blank" rel="noopener">Linux和UNIX的关系及区别</a></p><h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><p>程序（program）是一个存储在磁盘上某个目录中的可执行文件。内核使用exec函数（7个exec函数之一），将程序读入内存，并执行程序</p><p>程序的执行实例被称为进程（process）UNIX系统确保每个进程都有一个唯一的数字标识符，称为进程ID（process ID）。进程 ID总是一个非负整数。</p><h2 id="系统调用和库函数"><a href="#系统调用和库函数" class="headerlink" title="系统调用和库函数"></a>系统调用和库函数</h2><p>所有的操作系统都提供多种服务的入口点，由此程序向内核请求服务。各种版本的UNIX实现都提供良好定义、数量有限、直接进入内核的入口点，这些入口点被称为系统调用</p><p>UNIX所使用的技术是为每个系统调用在标准C库中设置一个具有同样名字的函数。用户进程用标准C调用序列来调用这些函数，然后，函数又用系统所要求的技术调用相应的内核服务。</p><p>“例如，printf 函数会调用write系统调用以输出一个字符串，但函数strcpy（复制一个字符串）和atoi（将ASCII转换为整数）并不使用任何内核的系统调用。</p><p>从实现者的角度来看，系统调用和库函数之间有根本的区别，但从用户角度来看，其区别并不重要。</p><p>系统调用和库函数之间的另一个差别是：系统调用通常提供一种最小接口，而库函数通常提供比较复杂的功能。</p><img src='/images/Snipaste_2020-07-23_23-53-32.png' style='width:300px'><h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>Linux是一种提供类似于UNIX的丰富编程环境的操作系统，在GNU公用许可证的指导下， Linux是免费使用的。<br>Linux的普及是计算机产业中的一道亮丽风景线。Linux经常是支持较新硬件的第一个操作系统，这一点使其引人注目。Linux是由Linus Torvalds在1991年为替代MINIX而研发的。一位当时名不见经传人物的努力掀起了澎湃巨浪，吸引了遍布全世界的很多软件开发者，在使用和不断增强Linux方面自愿贡献出了他们大量的时间。</p><p>Ubuntu 12.04 的 Linux 分发版本是用以测试本书实例的操作系统之一。该系统使用了 Linux操作系统3.2.0版内核。</p><h2 id="Mac-OS-X"><a href="#Mac-OS-X" class="headerlink" title="Mac OS X"></a>Mac OS X</h2><p>Mac OS X使用了完全不同的技术。其核心操作系统称为“Darwin”，它基于Mach内核（Accetta等[1986]）、FreeBSD操作系统以及具有面向对象框架的驱动和其他内核扩展的结合。Mac OS X 10.5的Intel部分已经被验证为是一个UNIX系统。</p><h2 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h2><p>对于内核而言，所有打开的文件都通过文件描述符引用。文件描述符是一个非负整数。当打开一个现有文件或创建一个新文件时，内核向进程返回一个文件描述符。当读、写一个文件时，使用open或creat返回的文件描述符标识该文件，将其作为参数传送给read或write。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> UNIX </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UNIX </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>线程与进程</title>
       <link href="/2020/06/29/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/"/>
       <url>/2020/06/29/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</url>
